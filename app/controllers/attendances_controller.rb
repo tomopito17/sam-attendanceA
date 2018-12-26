@@ -53,14 +53,14 @@ class AttendancesController < ApplicationController
     # 更新パラメータを文字列で取得する
     @update_type = params[:attendance][:update_type]
 
-    if @update_type == 'attendance_time'
+    if @update_type == 'arriving_at'
       # 出社時刻を更新 
-      if !@attendance.update_column(:attendance_time, DateTime.new(DateTime.now.year, DateTime.now.month, DateTime.now.day,DateTime.now.hour,DateTime.now.min,0))
+      if !@attendance.update_column(:arriving_at, DateTime.new(DateTime.now.year, DateTime.now.month, DateTime.now.day,DateTime.now.hour,DateTime.now.min,0))
         flash[:error] = "出社時間の入力に失敗しました"
       end
-    elsif @update_type == 'leaving_time'
+    elsif @update_type == 'leaving_at'
       # 退社時刻を更新 
-      if !@attendance.update_column(:leaving_time, DateTime.new(DateTime.now.year, DateTime.now.month, DateTime.now.day,DateTime.now.hour,DateTime.now.min,0))
+      if !@attendance.update_column(:leaving_at, DateTime.new(DateTime.now.year, DateTime.now.month, DateTime.now.day,DateTime.now.hour,DateTime.now.min,0))
         flash[:error] = "退社時間の入力に失敗しました"
       end
     end  
@@ -110,7 +110,7 @@ class AttendancesController < ApplicationController
       attendance = Attendance.find(id)
       
       #出社時間と退社時間の両方の存在を確認
-      if item["attendance_time"].blank? && item["leaving_time"].blank?
+      if item["arriving_at"].blank? && item["leaving_at"].blank?
         message = '一部編集が無効となった項目があります。'
         
       # 当日以降の編集はadminユーザのみ
