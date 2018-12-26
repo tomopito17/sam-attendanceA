@@ -16,13 +16,15 @@ ActiveRecord::Schema.define(version: 20181219130456) do
     t.datetime "arriving_at"
     t.datetime "leaving_at"
     t.string   "note"
-    t.datetime "attendance_date"
+    t.date     "attendance_date"
     t.datetime "overtime"
     t.text     "task_memo"
     t.integer  "overwork_confirmation"
     t.integer  "change_confirmation"
+    t.integer  "user_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

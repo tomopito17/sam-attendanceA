@@ -11,4 +11,15 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]
+  resources :attendances
+  
+  # 出勤画面表示・編集
+  get  '/attendance_update', to: 'attendances#attendance_update'
+  post '/attendance_update', to: 'attendances#attendance_update'
+  patch '/attendance_update', to: 'attendances#attendance_update'
+
+
+  get  '/attendance_edit', to: 'attendances#attendance_edit'
+  post '/attendance_edit', to: 'attendances#attendance_edit'
+  patch '/attendance_edit', to: 'attendances#attendance_edit'
 end
