@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   get  '/attendance_edit', to: 'attendances#attendance_edit'
   post '/attendance_edit', to: 'attendances#attendance_edit'
   patch '/attendance_edit', to: 'attendances#attendance_edit'
+  
+  post  '/attendance_update_all', to: 'attendances#attendance_update_all'
+  get   '/attendance_update_all', to: 'attendances#attendance_update_all'
 end

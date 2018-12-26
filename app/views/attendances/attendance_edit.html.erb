@@ -31,15 +31,15 @@
         <%= fields_for "attendances[]", d do |tf| %>
           <tr>
             <!--日付-->
-            <td class = "day"><%= d.day.to_s(:day) %></td>
+            <td class = "attendance_date"><%= d.attendance_date.to_s(:attendance_date) %></td>
             <!--曜日-->
-            <td class = "day"><%= @youbi[d.day.wday] %></td>
+            <td class = "attendance_date"><%= @youbi[d.attendance_date.wday] %></td>
             <!--出勤-->
-            <td><%= tf.time_field :attendance_time, class: "form-control tf" %></td>
+            <td><%= tf.time_field :arriving_at, class: "form-control tf" %></td>
             <!--退勤-->
-            <td><%= tf.time_field :leaving_time, class: "form-control tf" %></td>
+            <td><%= tf.time_field :leaving_at, class: "form-control tf" %></td>
             <!--在社時間の秒計算-->
-            <td><%= working_hours(d.attendance_time,d.leaving_time) if d.attendance_time.present? && d.leaving_time.present? %></td>
+            <td><%= working_hours(d.arriving_at,d.leaving_at) if d.arriving_at.present? && d.leaving_at.present? %></td>
             <td></td>
             <td></td>
             <td></td>

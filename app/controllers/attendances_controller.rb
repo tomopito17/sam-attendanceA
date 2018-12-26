@@ -25,7 +25,7 @@ class AttendancesController < ApplicationController
       end
     end
     # 表示期間の勤怠データを日付順にソートして取得 show.html.erb、 <% @attendances.each do |attendance| %>からの情報
-    @attendances = @user.attendances.where('day >= ? and day <= ?', @first_day, @last_day).order("day ASC")
+    @attendances = @user.attendances.where('attendance_date >= ? and attendance_date <= ?', @first_day, @last_day).order("attendance_date ASC")
   end
   
   def new
@@ -90,13 +90,13 @@ class AttendancesController < ApplicationController
     (@first_day..@last_day).each do |date|
       # 該当日付のデータがないなら作成する
       #(例)user1に対して、今月の初日から最終日の値を取得する
-      if !@user.attendances.any? {|attendance| attendance.day == date }
+      if !@user.attendances.any? {|attendance| attendance.attendance_date == date }
         linked_attendance = Attendance.create(user_id: @user.id, day: date)
         linked_attendance.save
       end
       
     # 表示期間の勤怠データを日付順にソートして取得 show.html.erb、 <% @attendances.each do |attendance| %>からの情報
-    @attendances = @user.attendances.where('day >= ? and day <= ?', @first_day, @last_day).order("day ASC")
+    @attendances = @user.attendances.where('attendance_date >= ? and attendance_date <= ?', @first_day, @last_day).order("attendance_date ASC")
     end
   end
 
@@ -114,12 +114,12 @@ class AttendancesController < ApplicationController
         message = '一部編集が無効となった項目があります。'
         
       # 当日以降の編集はadminユーザのみ
-      elsif attendance.day > Date.current && !current_user.admin?
+      elsif attendance.attendance_date > Date.current && !current_user.admin?
         message = '明日以降の勤怠編集は出来ません。'
         error_count += 1
       
       #出社時間 > 退社時間ではないか
-      elsif item["attendance_time"].to_s > item["leaving_time"].to_s
+      elsif item["arriving_at"].to_s > item["leaving_at"].to_s
         message = '出社時間より退社時間が早い項目がありました'
         error_count += 1
       end
@@ -132,7 +132,7 @@ class AttendancesController < ApplicationController
         attendance = Attendance.find(id)
         
         # 当日以降の編集はadminユーザのみ
-        if item["attendance_time"].blank? && item["leaving_time"].blank?
+        if item["arriving_at"].blank? && item["leaving_at"].blank?
         
         else
           attendance.update_attributes(item)
@@ -146,6 +146,6 @@ class AttendancesController < ApplicationController
   private
 
   def attendances_params
-    params.permit(attendances: [:attendance_time, :leaving_time])[:attendances]
+    params.permit(attendances: [:arriving_at, :leaving_at])[:attendances]
   end
 end
