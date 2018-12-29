@@ -75,7 +75,7 @@
           <td class="table-body">
             <!-- 自身の勤怠で出社時間と退社時間が空なら表示  -->
             <% if current_user == @user && attendance.arriving_at.nil? && attendance.leaving_at.nil? && attendance.attendance_date == Date.today %>
-              <%= f.hidden_field :update_type, :value => "attendance_time"%>
+              <%= f.hidden_field :update_type, :value => "arriving_at"%>
               <%= f.submit "出社", class: "btn btn-sm btn-primary" %>
             <% end %>
           </td>
