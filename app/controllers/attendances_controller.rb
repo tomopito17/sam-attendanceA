@@ -101,7 +101,6 @@ class AttendancesController < ApplicationController
 
   #編集ページ更新  
   def attendance_update_all
-    debugger
     @user = User.find_by(id: params[:id])
     error_count = 0
     message = ""
