@@ -32,6 +32,12 @@ class AttendancesController < ApplicationController
   end
   
   def create
+    @attendance = Attendance.new(attendances_params)
+    if @attendance.save
+      redirect_to attendances_path, notice: '残業申請を送付しました。' 
+    else
+      redirect_to attendances_path, notice: '残業申請は失敗しました。' 
+    end
   end
   
   def show
@@ -140,7 +146,7 @@ class AttendancesController < ApplicationController
         end
       end #eachの締め
     end
-    redirect_to user_url(@user, params:{ id: @user.id, first_day: params[:first_day]})
+    redirect_to attendances_url(@user, params:{ id: @user.id, first_day: params[:first_day]})
   end
   
   private
