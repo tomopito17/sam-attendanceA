@@ -1,6 +1,22 @@
 <% provide(:title, 'All users') %>
 <h1>ユーザ一覧</h1>
 
+<form enctype="multipart/form-data" action="/users" accept-charset="UTF-8" method="post">
+  <div class="input-group" style="width: 300px;">
+    <span class="input-group-btn">
+      <button name="button" type="button" class="btn btn-default csv_input_btn" onclick="$('#file_input').click();">ファイル選択</button>
+    </span>
+    <input type="file" name="users_file" id="file_input" style="display: none;" onchange="file_selected($(this));" required="required">
+    <input type="text" name="filename" id="filename" value="" disabled="disabled" class="form-control" placeholder="CSVファイルを選択">
+  </div>
+  <br>
+  <input type="submit" name="commit" value="CSVをインポート" class="btn btn-primary csv_submit" data-disable-with="CSVをインポート">
+</form>
+
+
+
+<%= link_to "CSVをエクスポート（ユーザー情報）", users_path(format: :csv), class: "btn btn-primary btn-sm" %>
+
 <%= will_paginate %>
 
 <ul class="users">
