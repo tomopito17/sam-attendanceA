@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      working_place: 拠点
+    attributes:
+      working_place:
+        working_place_number: 拠点番号
+        working_place_name: 拠点名
+        working_type: 勤怠種類
