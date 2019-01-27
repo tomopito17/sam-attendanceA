@@ -18,6 +18,16 @@ class WorkingPlacesController < ApplicationController
     end
   end
   
+  def edit
+    @working_place = WorkingPlace.find(params[:id])
+  end
+    
+  def destroy
+    WorkingPlace.find(params[:id]).destroy
+    flash[:danger] = "拠点情報を削除しました。"
+    redirect_to working_places_path
+  end
+  
   private
   def working_place_params
     params.require(:working_place).permit(
