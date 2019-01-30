@@ -19,7 +19,7 @@ class WorkingPlacesController < ApplicationController
   end
   
   def edit
-    @working_place = WorkingPlace.find(params[:id])
+    @working_place = WorkingPlace.find(params[:working_place][:id])
   end
     
   def destroy
