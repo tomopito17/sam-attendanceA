@@ -21,8 +21,8 @@ class AttendancesController < ApplicationController
       # 該当日付のデータがないなら作成する
       #(例)user1に対して、今月の初日から最終日の値を取得する
       if !@user.attendances.any?
-        #linked_attendance = Attendance.new(user_id: @user.id, attendance_date: date)
-        #linked_attendance.save
+        linked_attendance = Attendance.new(user_id: @user.id, attendance_date: date)
+        linked_attendance.save
       end
     end
     # 表示期間の勤怠データを日付順にソートして取得 show.html.erb、 <% @attendances.each do |attendance| %>からの情報
