@@ -1,20 +1,10 @@
 <% provide(:title, 'All users') %>
 <h1>ユーザ一覧</h1>
-　<!--ファイル選択ボタンで外部ローカルファイルを選択-->
- <!-- <form enctype="multipart/form-date" action="/users" accept-charset="UTF-8" method="post">-->
- <!--   <dive class="input-group" style="width: 300px;">-->
- <!--     <span class="input-group-btn">-->
- <!--       <button name="button" type="button" class="btn btn-default csv_input_btn" onclick="$('#file_input').click();">ファイル選択</button>-->
- <!--     </span>-->
- <!--     <input type="file" name="users_file" id="file_input" style="display: none;" onchange="file_selected($(this));" required="required"> -->
- <!--     <input type="text" name="filename" id="filename" value="" disabled="disabled" class="form-control" placeholder="CSVファイルを選択">-->
- <!--   </dive> -->
- <!--   <input type="submit" name="commit" value="CSVインポート" class="btn btn-primary csv_submit" data-disable-with="CSVをインポート" style="width: 300px;">-->
- <!-- </form>-->
- <!-- <br>-->
-  
-<div><%= link_to "ユーザ一覧のCSVエクスポート", users_path(format: :csv), class: "btn btn-primary btn-sm" %>
+<%= link_to "ユーザ一覧のCSVエクスポート", users_path(format: :csv), class: "btn btn-primary btn-sm" %>
 
-<%= render :partial => "users/users_accordion", :locals => { users: @users } %>
+<%= will_paginate %>
+<ul class="users">
+    <%= render :partial => "users/users_accordion", :locals => { users: @users } %>
+</ul>
 
-</div>
+<%= will_paginate %>
