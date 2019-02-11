@@ -120,10 +120,10 @@
             <%= attendance.note %>
           </td>
           <!-- 終了予定時間の表示  -->
-          <td class="table-body">
+          <td class="table-body"><%= attendance.overtime %>
           </td>
           <!-- 終了予定時間の表示  -->
-          <td class="table-body">
+          <td class="table-body"><%= attendance.overtime %>
           </td>
           <!-- 時間外時間の表示  -->
           <td class="table-body">
@@ -132,7 +132,7 @@
           <td class="table-body"><%= attendance.task_memo %></td>
           
           <!-- 指示者確認（印）の表示  -->
-          <td class="table-body">
+          <td class="table-body"><%= attendance.overwork_status %>
           </td>
         </tr>
       </div>

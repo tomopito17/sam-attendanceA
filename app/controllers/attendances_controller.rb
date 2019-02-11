@@ -45,6 +45,7 @@ class AttendancesController < ApplicationController
   end
   
   def update
+    #todo
     @attendance = Attendance.find(params[:id])
     
     tmp_date = @attendance.attendance_date
