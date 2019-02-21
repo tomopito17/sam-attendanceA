@@ -2,7 +2,6 @@
   <div id="accordion" class="panel-group">
   <% @users.each do |user| %>
     <li>
-    <%= gravatar_for user, size: 50 %>
     <%= link_to user.name, user %>
     </li>
      <% if current_user.admin? && !current_user?(user) %>
@@ -14,7 +13,7 @@
         <div class="panel-heading">
           <h4 class="panel-title">
           <!--idとして一意に特定できるようにする-->
-            <a href="#<%= user.id %>" class="accordion-toggle collapsed btn btn-primary btn-sm" data-toggle="collapse" data-parent="#accordion" style="color:white;">編集</a>
+            <a href="#<%= user.id %>" class="accordion-toggle collapsed btn btn-primary" data-toggle="collapse" data-parent="#accordion" style="color:white;">編集</a>
           </h4>
         </div>
         <!--idは一意に特定できるようにする-->
