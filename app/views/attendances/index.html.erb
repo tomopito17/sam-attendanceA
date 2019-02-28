@@ -116,14 +116,13 @@
             <% end %>
           </td>
           <!-- 備考の表示  -->
-          <td class="table-body">
-            <%= attendance.note %>
+          <td class="table-body"><%= attendance.note %>
           </td>
           <!-- 終了予定時間の表示  -->
-          <td class="table-body">
+          <td class="table-body"><%= attendance.overtime.try(:hour) %>
           </td>
           <!-- 終了予定時間の表示  -->
-          <td class="table-body">
+          <td class="table-body"><%= attendance.overtime.try(:min) %>
           </td>
           <!-- 時間外時間の表示  -->
           <td class="table-body">

@@ -186,6 +186,6 @@ class AttendancesController < ApplicationController
   private
 
   def attendances_params
-    params.permit(attendances: [:arriving_at, :leaving_at])[:attendances]
+    params.permit(attendances: [:arriving_at, :leaving_at, :note, :overwork_approver_id])[:attendances]
   end
 end
