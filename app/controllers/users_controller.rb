@@ -47,6 +47,21 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def import
+    current_user.users.import(params[:file])
+    redirect_to users_url, notice: "ユーザーを追加しました"
+  end
+  
+  # def users_csv(file)
+  #   # User.rbに記述すべきだが、今回はusersをインポートするだけなのでusers_csvとしている。
+  #   # usersを追加するだけなので、コントローラー内のメソッドに処理を記述する。
+  #   CSV.foreach(file.path, headers: true) do |row|
+  #     @User = User.new
+  #     @User.attributes = row.to_hash.slice(*csv_attributes)
+  #     @user.save!
+  #   end
+  # end
+  
   def attendance_users
     @users = User.attendancing
   end

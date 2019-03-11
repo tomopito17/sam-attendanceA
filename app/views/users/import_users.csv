@@ -1,0 +1,2 @@
+name,email,role,employee_number,card_id,base_attendance_time,start_attendance_time,end_attendance_time,admin
+名前	メールアドレス	所属	社員番号	カードID	基本勤務時間	指定勤務開始時間	指定勤務終了時間	管理者

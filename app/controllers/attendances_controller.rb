@@ -175,8 +175,14 @@ class AttendancesController < ApplicationController
         if item["arriving_at"].blank? && item["leaving_at"].blank?
         
         else
-          attendance.update_attributes(item)
-          flash[:success] = '勤怠時間を更新しました。'
+          if params["attendances"][id]["change_confirmation_approver_id"]
+            item["change_confirmation_approver_id"] = User.where(name: params["attendances"][id]["change_confirmation_approver_id"]).first.id.to_i
+            attendance.update_attributes(item)
+            flash[:success] = '勤怠時間を更新しました。'
+          else
+            attendance.update_attributes(item)
+            flash[:success] = '勤怠時間を更新しました。'
+          end
         end
       end #eachの締め
     end

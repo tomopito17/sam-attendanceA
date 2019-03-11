@@ -1,6 +1,16 @@
 <% provide(:title, 'All users') %>
 <h1>ユーザ一覧</h1>
+
+<ul class="import">
+<%= form_tag(import_users_path, :method => :post, multipart: true, class: "mb-3" ) do %>
+  <%= file_field_tag(:file) %>
+  <%= submit_tag "CSVインポート", class: "btn btn-primary btn-sm" %>
+<% end %>
+</ul>
+
+<ul class="export">
 <%= link_to "ユーザ一覧のCSVエクスポート", users_path(format: :csv), class: "btn btn-primary btn-sm" %>
+</ul>
 
 <%= will_paginate %>
 <ul class="users">

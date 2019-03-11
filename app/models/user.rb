@@ -60,9 +60,18 @@ class User < ApplicationRecord
       .where('attendances.attendance_date = ?', Time.now.localtime('+09:00').to_date)
       .where('attendances.arriving_at < ?', DateTime.current)
       .where('attendances.leaving_at is null')
-  } 
+  }
   
- private
+  #CSVインポート
+  def self.import(file)
+    CSV.foreach(file.path, header:true) do |row|
+      user = new
+      user.attributes = row.to_hash.slice(*csv_attributes)
+      user.save!
+    end
+  end
+  
+  private
 
     # メールアドレスをすべて小文字にする
     def downcase_email
