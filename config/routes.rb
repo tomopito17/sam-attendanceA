@@ -9,17 +9,22 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resources :users do
-    post :import, on: :collection
-  end
   
+  resources :users
+  #CSVのインポート
+  post '/import_csv', to: 'users#import_csv'
+  #出勤社員一覧
   get  '/attendance_users',    to: 'users#attendance_users'
   resources :account_activations, only: [:edit]
   resources :attendances
+  
   #一ヶ月分の申請
   patch  '/monthly_confirmation',    to: 'attendances#monthly_confirmation'
+  #基本情報
   resources :basic_information
+  #拠点情報
   resources :working_places
+  #勤怠修正ログ
   resources :attendance_logs
 
   

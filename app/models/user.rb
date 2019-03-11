@@ -63,7 +63,7 @@ class User < ApplicationRecord
   }
   
   #CSVインポート
-  def self.import(file)
+  def self.import_csv(file)
     CSV.foreach(file.path, header:true) do |row|
       user = new
       user.attributes = row.to_hash.slice(*csv_attributes)

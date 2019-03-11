@@ -47,8 +47,8 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
-  def import
-    current_user.users.import(params[:file])
+  def import_csv
+    User.import_csv(params[:file])
     redirect_to users_url, notice: "ユーザーを追加しました"
   end
   

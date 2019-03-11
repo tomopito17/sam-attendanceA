@@ -2,7 +2,7 @@
 <h1>ユーザ一覧</h1>
 
 <ul class="import">
-<%= form_tag(import_users_path, :method => :post, multipart: true, class: "mb-3" ) do %>
+<%= form_tag(import_csv_path, :method => :post, multipart: true, class: "mb-3" ) do %>
   <%= file_field_tag(:file) %>
   <%= submit_tag "CSVインポート", class: "btn btn-primary btn-sm" %>
 <% end %>
