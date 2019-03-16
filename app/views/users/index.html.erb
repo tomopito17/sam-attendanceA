@@ -1,20 +1,19 @@
 <% provide(:title, 'All users') %>
 <h1>ユーザ一覧</h1>
 
-<ul class="import">
-<%= form_tag(import_csv_path, :method => :post, multipart: true, class: "mb-3" ) do %>
+<div class="import">
+<%= form_tag(import_csv_path, :method => :post, multipart: true, class: "col-lg-4" ) do %>
   <%= file_field_tag(:file) %>
   <%= submit_tag "CSVインポート", class: "btn btn-primary btn-sm" %>
 <% end %>
-</ul>
-
-<ul class="export">
-<%= link_to "ユーザ一覧のCSVエクスポート", users_path(format: :csv), class: "btn btn-primary btn-sm" %>
-</ul>
-
+</div>
+<br><br><br><br>
+<div class="export">
+  <%= link_to "ユーザ一覧のCSVエクスポート", users_path(format: :csv), class: "btn btn-primary btn-sm" %>
+</div>
+<br><br>
 <%= will_paginate %>
 <ul class="users">
     <%= render :partial => "users/users_accordion", :locals => { users: @users } %>
 </ul>
-
 <%= will_paginate %>
