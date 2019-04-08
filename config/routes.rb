@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :attendances
   
+  #上長画面一ヶ月分勤怠申請のお知らせフォーム
+  get  '/monthly_confirmation_form',    to: 'attendances#monthly_confirmation_form'
+  post  '/monthly_confirmation_form',    to: 'attendances#monthly_confirmation_form'
+  
   #一ヶ月分の申請
   patch  '/monthly_confirmation',    to: 'attendances#monthly_confirmation'
   #基本情報
