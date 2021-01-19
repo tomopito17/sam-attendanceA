@@ -56,4 +56,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   host = 'kintai-a-cloned-happyyuriko.c9users.io'     # クラウドIDE
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  
+  #config.web_console.whitelisted_ips = '126.234.165.171'#21.0115追記
 end
